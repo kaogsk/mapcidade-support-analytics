@@ -1,0 +1,40 @@
+{
+  "name": "mapcidade-support-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Per-analyst support performance dashboard: incremental sync + reconcile from a ticketing OData API into a SQLite mirror, SLA / first-response metrics in the Brasília timezone, and a Next.js frontend.",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "dev:web": "npm run dev -w frontend",
+    "start": "node dist/server.js",
+    "start:web": "npm run start -w frontend",
+    "build": "tsc && npm run build -w frontend",
+    "test": "vitest run",
+    "lint": "eslint src tests && npm run lint -w frontend",
+    "sync:full": "tsx src/cli.ts full",
+    "sync:incremental": "tsx src/cli.ts incremental",
+    "reconcile": "tsx src/cli.ts reconcile"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.39.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^3.2.0"
+  }
+}
